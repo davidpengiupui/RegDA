@@ -9,7 +9,7 @@ import torch.nn.functional as F
 import numpy as np
 
 #from dalib.modules.gl import WarmStartGradientLayer
-from common.utils.metric.keypoint_detection import get_max_preds
+from metric import get_max_preds
 
 from typing import Optional, Any, Tuple
 #import numpy as np
