@@ -6,9 +6,9 @@ import os
 import json
 from PIL import ImageFile
 import torch
-from ...transforms.keypoint_detection import *
+from .transforms import *
 from .util import *
-from .._util import download as download_data, check_exits
+from ._util import download as download_data, check_exits
 from .keypoint_dataset import Body16KeypointDataset
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
