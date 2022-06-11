@@ -23,7 +23,7 @@ import common.vision.models as models
 from network import Upsampling, PoseResNet # finish
 from loss import JointsKLLoss # finish
 import dataset as datasets # finish
-import common.vision.transforms.keypoint_detection as T
+import transforms as T # finish
 from common.vision.transforms import Denormalize
 from common.utils.data import ForeverDataIterator
 from common.utils.meter import AverageMeter, ProgressMeter, AverageMeterDict
