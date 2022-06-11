@@ -24,7 +24,7 @@ from network import Upsampling, PoseResNet # finish
 from loss import JointsKLLoss # finish
 import dataset as datasets # finish
 import transforms as T # finish
-from common.vision.transforms import Denormalize
+from transforms import Denormalize # finish
 from common.utils.data import ForeverDataIterator
 from common.utils.meter import AverageMeter, ProgressMeter, AverageMeterDict
 from common.utils.metric.keypoint_detection import accuracy
