@@ -15,3 +15,18 @@
   howpublished = {\url{https://github.com/thuml/Transfer-Learning-Library}},
 }
 ```
+
+```
+@InProceedings{RegDA,
+    author    = {Junguang Jiang and
+                Yifei Ji and
+                Ximei Wang and
+                Yufeng Liu and
+                Jianmin Wang and
+                Mingsheng Long},
+    title     = {Regressive Domain Adaptation for Unsupervised Keypoint Detection},
+    booktitle = {CVPR},
+    year = {2021}
+}
+
+```
