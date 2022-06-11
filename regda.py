@@ -25,7 +25,7 @@ from loss import JointsKLLoss # finish
 import dataset as datasets # finish
 import transforms as T # finish
 from transforms import Denormalize # finish
-from common.utils.data import ForeverDataIterator
+from data import ForeverDataIterator # finish
 from common.utils.meter import AverageMeter, ProgressMeter, AverageMeterDict
 from common.utils.metric.keypoint_detection import accuracy
 from common.utils.logger import CompleteLogger
