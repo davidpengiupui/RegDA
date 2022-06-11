@@ -4,7 +4,7 @@ Modified from https://github.com/microsoft/human-pose-estimation.pytorch
 @contact: JiangJunguang1123@outlook.com
 """
 import torch.nn as nn
-from ..resnet import _resnet, Bottleneck
+from resnet import _resnet, Bottleneck
 
 
 class Upsampling(nn.Sequential):
