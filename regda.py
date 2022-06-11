@@ -22,7 +22,7 @@ from model import PoseResNet2d as RegDAPoseResNet, \
 import common.vision.models as models
 from network import Upsampling, PoseResNet # finish
 from loss import JointsKLLoss # finish
-import common.vision.datasets.keypoint_detection as datasets
+import datasets as datasets
 import common.vision.transforms.keypoint_detection as T
 from common.vision.transforms import Denormalize
 from common.utils.data import ForeverDataIterator
