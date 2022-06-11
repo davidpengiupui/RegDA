@@ -26,9 +26,9 @@ import dataset as datasets # finish
 import transforms as T # finish
 from transforms import Denormalize # finish
 from data import ForeverDataIterator # finish
-from common.utils.meter import AverageMeter, ProgressMeter, AverageMeterDict
-from common.utils.metric.keypoint_detection import accuracy
-from common.utils.logger import CompleteLogger
+from meter import AverageMeter, ProgressMeter, AverageMeterDict
+from metric import accuracy
+from logger import CompleteLogger
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
