@@ -19,7 +19,7 @@ from torchvision.transforms import Compose, ToPILImage
 #sys.path.append('../../..')
 from model import PoseResNet2d as RegDAPoseResNet, \
     PseudoLabelGenerator2d, RegressionDisparity # finish
-import common.vision.models as models
+import models as models #finish
 from network import Upsampling, PoseResNet # finish
 from loss import JointsKLLoss # finish
 import dataset as datasets # finish
