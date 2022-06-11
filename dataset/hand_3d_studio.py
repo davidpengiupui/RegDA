@@ -9,7 +9,7 @@ from PIL import ImageFile, Image
 import torch
 import os.path as osp
 
-from .._util import download as download_data, check_exits
+from ._util import download as download_data, check_exits
 from .keypoint_dataset import Hand21KeypointDataset
 from .util import *
 
