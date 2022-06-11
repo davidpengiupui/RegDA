@@ -8,7 +8,7 @@ import tqdm
 from PIL import ImageFile
 import torch
 from .keypoint_dataset import Body16KeypointDataset
-from ...transforms.keypoint_detection import *
+from .transforms import *
 from .util import *
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
