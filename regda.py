@@ -18,9 +18,9 @@ from torchvision.transforms import Compose, ToPILImage
 
 #sys.path.append('../../..')
 from model import PoseResNet2d as RegDAPoseResNet, \
-    PseudoLabelGenerator2d, RegressionDisparity # models
+    PseudoLabelGenerator2d, RegressionDisparity # finish
 import common.vision.models as models
-from common.vision.models.keypoint_detection.pose_resnet import Upsampling, PoseResNet
+from network import Upsampling, PoseResNet 
 from common.vision.models.keypoint_detection.loss import JointsKLLoss
 import common.vision.datasets.keypoint_detection as datasets
 import common.vision.transforms.keypoint_detection as T
