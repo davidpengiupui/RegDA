@@ -25,7 +25,7 @@ from loss import JointsKLLoss # finish
 import dataset as datasets # finish
 import transforms as T # finish
 from transforms import Denormalize # finish
-from data import ForeverDataIterator # finish
+from loader import ForeverDataIterator # finish
 from meter import AverageMeter, ProgressMeter, AverageMeterDict # finish
 from metric import accuracy # finish
 from logger import CompleteLogger # finish
