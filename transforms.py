@@ -13,6 +13,34 @@ import math
 import warnings
 from typing import ClassVar
 
+#import math
+#import random
+#from PIL import Image
+#import numpy as np
+import torch
+from torchvision.transforms import Normalize
+
+class Denormalize(Normalize):
+    """DeNormalize a tensor image with mean and standard deviation.
+    Given mean: ``(mean[1],...,mean[n])`` and std: ``(std[1],..,std[n])`` for ``n``
+    channels, this transform will denormalize each channel of the input
+    ``torch.*Tensor`` i.e.,
+    ``output[channel] = input[channel] * std[channel] + mean[channel]``
+
+    .. note::
+        This transform acts out of place, i.e., it does not mutate the input tensor.
+
+    Args:
+        mean (sequence): Sequence of means for each channel.
+        std (sequence): Sequence of standard deviations for each channel.
+
+    """
+
+    def __init__(self, mean, std):
+        mean = np.array(mean)
+        std = np.array(std)
+        super().__init__((-mean / std).tolist(), (1 / std).tolist())
+
 
 def wrapper(transform: ClassVar):
     """ Wrap a transform for classification to a transform for keypoint detection.
