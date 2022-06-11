@@ -9,7 +9,7 @@ import os
 import os.path as osp
 from torchvision.datasets.utils import download_and_extract_archive
 
-from ...transforms.keypoint_detection import *
+from ..transforms import *
 from .keypoint_dataset import Hand21KeypointDataset
 from .util import *
 
