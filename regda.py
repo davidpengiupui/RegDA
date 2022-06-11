@@ -16,8 +16,8 @@ from torch.optim.lr_scheduler import LambdaLR, MultiStepLR
 from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, ToPILImage
 
-sys.path.append('../../..')
-from dalib.adaptation.regda import PoseResNet2d as RegDAPoseResNet, \
+#sys.path.append('../../..')
+from network import PoseResNet2d as RegDAPoseResNet, \
     PseudoLabelGenerator2d, RegressionDisparity # models
 import common.vision.models as models
 from common.vision.models.keypoint_detection.pose_resnet import Upsampling, PoseResNet
