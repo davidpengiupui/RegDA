@@ -2,6 +2,19 @@
 
 ## Simple Version of - [Regressive Domain Adaptation for Unsupervised Keypoint Detection (RegDA, CVPR 2021)](http://ise.thss.tsinghua.edu.cn/~mlong/doc/regressive-domain-adaptation-cvpr21.pdf)
 
+## Experiment and Results
+
+The shell files give the script to reproduce the [benchmarks](/docs/dalib/benchmarks/keypoint_detection.rst) with specified hyper-parameters.
+For example, if you want to train DANN on Office31, use the following script
+
+```shell script
+# Train a RegDA on RHD -> H3D task using PoseResNet.
+# Assume you have put the datasets under the path `data/RHD` and  `data/H3D_crop`, 
+# or you are glad to download the datasets automatically from the Internet to this path
+CUDA_VISIBLE_DEVICES=0 python regda.py data/RHD data/H3D_crop \
+    -s RenderedHandPose -t Hand3DStudio --finetune --seed 0 --debug --log logs/regda/rhd2h3d
+```
+
 ## Citation
 
 
