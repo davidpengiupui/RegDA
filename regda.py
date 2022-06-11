@@ -20,8 +20,8 @@ from torchvision.transforms import Compose, ToPILImage
 from model import PoseResNet2d as RegDAPoseResNet, \
     PseudoLabelGenerator2d, RegressionDisparity # finish
 import common.vision.models as models
-from network import Upsampling, PoseResNet 
-from common.vision.models.keypoint_detection.loss import JointsKLLoss
+from network import Upsampling, PoseResNet # finish
+from loss import JointsKLLoss # finish
 import common.vision.datasets.keypoint_detection as datasets
 import common.vision.transforms.keypoint_detection as T
 from common.vision.transforms import Denormalize
