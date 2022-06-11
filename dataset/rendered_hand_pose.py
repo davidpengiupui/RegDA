@@ -6,8 +6,8 @@ import torch
 import os
 import pickle
 
-from .._util import download as download_data, check_exits
-from ...transforms.keypoint_detection import *
+from ._util import download as download_data, check_exits
+from .transforms import *
 from .keypoint_dataset import Hand21KeypointDataset
 from .util import *
 
