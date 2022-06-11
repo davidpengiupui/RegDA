@@ -1,6 +1,6 @@
 # RegDA
 
-## Simple Version of 
+## Simple Version of - [Regressive Domain Adaptation for Unsupervised Keypoint Detection (RegDA, CVPR 2021)](http://ise.thss.tsinghua.edu.cn/~mlong/doc/regressive-domain-adaptation-cvpr21.pdf)
 
 ## Citation
 
