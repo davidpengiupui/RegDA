@@ -34,7 +34,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def main(args: argparse.Namespace):
-    logger = CompleteLogger(args.log, args.phase)
+    logger = CompleteLogger(args.log, args.phase) # args.log = logs/regda/rhd2h3d, args.phase = "train"
     print(args)
 
     if args.seed is not None:
