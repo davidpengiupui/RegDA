@@ -93,8 +93,10 @@ def main(args: argparse.Namespace):
     train_target_iter = ForeverDataIterator(train_target_loader)
 
     # create model
-    backbone = models.__dict__[args.arch](pretrained=True)
-    upsampling = Upsampling(backbone.out_features)
+    #backbone = models.__dict__[args.arch](pretrained=True)
+    backbone = models.get_pose_net()
+    #upsampling = Upsampling(backbone.out_features)
+    upsampling = nn.Identity()
     num_keypoints = train_source_dataset.num_keypoints
     model = RegDAPoseResNet(backbone, upsampling, 256, num_keypoints, num_head_layers=args.num_head_layers, finetune=True).to(device)
     # define loss function
