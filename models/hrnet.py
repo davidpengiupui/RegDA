@@ -121,19 +121,19 @@ class HighResolutionModule(nn.Module):
         if num_branches != len(num_blocks):
             error_msg = 'NUM_BRANCHES({}) <> NUM_BLOCKS({})'.format(
                 num_branches, len(num_blocks))
-            logger.error(error_msg)
+            #logger.error(error_msg)
             raise ValueError(error_msg)
 
         if num_branches != len(num_channels):
             error_msg = 'NUM_BRANCHES({}) <> NUM_CHANNELS({})'.format(
                 num_branches, len(num_channels))
-            logger.error(error_msg)
+            #logger.error(error_msg)
             raise ValueError(error_msg)
 
         if num_branches != len(num_inchannels):
             error_msg = 'NUM_BRANCHES({}) <> NUM_INCHANNELS({})'.format(
                 num_branches, len(num_inchannels))
-            logger.error(error_msg)
+            #logger.error(error_msg)
             raise ValueError(error_msg)
 
     def _make_one_branch(self, branch_index, block, num_blocks, num_channels,
@@ -273,9 +273,10 @@ blocks_dict = {
 
 class PoseHighResolutionNet(nn.Module):
 
-    def __init__(self, cfg, **kwargs):
+    def __init__(self, **kwargs):
         self.inplanes = 64
-        extra = cfg.MODEL.EXTRA
+        #extra = cfg.MODEL.EXTRA
+   
         super(PoseHighResolutionNet, self).__init__()
 
         # stem net
@@ -288,7 +289,8 @@ class PoseHighResolutionNet(nn.Module):
         self.relu = nn.ReLU(inplace=True)
         self.layer1 = self._make_layer(Bottleneck, 64, 4)
 
-        self.stage2_cfg = cfg['MODEL']['EXTRA']['STAGE2']
+        #self.stage2_cfg = cfg['MODEL']['EXTRA']['STAGE2']
+        self.stage2_cfg = {"NUM_MODULES":1, "NUM_BRANCHES":2, "BLOCK":BASIC, "NUM_BLOCKS":[4,4], "NUM_CHANNELS":[32, 64], "FUSE_METHOD": SUM}
         num_channels = self.stage2_cfg['NUM_CHANNELS']
         block = blocks_dict[self.stage2_cfg['BLOCK']]
         num_channels = [
@@ -298,7 +300,8 @@ class PoseHighResolutionNet(nn.Module):
         self.stage2, pre_stage_channels = self._make_stage(
             self.stage2_cfg, num_channels)
 
-        self.stage3_cfg = cfg['MODEL']['EXTRA']['STAGE3']
+        #self.stage3_cfg = cfg['MODEL']['EXTRA']['STAGE3']
+        self.stage3_cfg = {"NUM_MODULES":4, "NUM_BRANCHES":3, "BLOCK":BASIC, "NUM_BLOCKS":[4,4,4], "NUM_CHANNELS":[32, 64, 128], "FUSE_METHOD": SUM}
         num_channels = self.stage3_cfg['NUM_CHANNELS']
         block = blocks_dict[self.stage3_cfg['BLOCK']]
         num_channels = [
@@ -309,7 +312,8 @@ class PoseHighResolutionNet(nn.Module):
         self.stage3, pre_stage_channels = self._make_stage(
             self.stage3_cfg, num_channels)
 
-        self.stage4_cfg = cfg['MODEL']['EXTRA']['STAGE4']
+        #self.stage4_cfg = cfg['MODEL']['EXTRA']['STAGE4']
+        self.stage4_cfg = {"NUM_MODULES":3, "NUM_BRANCHES":4, "BLOCK":BASIC, "NUM_BLOCKS":[4,4,4,4], "NUM_CHANNELS":[32, 64, 128, 256], "FUSE_METHOD": SUM}
         num_channels = self.stage4_cfg['NUM_CHANNELS']
         block = blocks_dict[self.stage4_cfg['BLOCK']]
         num_channels = [
