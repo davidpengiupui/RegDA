@@ -499,7 +499,7 @@ class PoseHighResolutionNet(nn.Module):
 
 
 def get_pose_net(is_train=True, **kwargs):
-    model = PoseHighResolutionNet(cfg, **kwargs)
+    model = PoseHighResolutionNet(**kwargs)
 
     if is_train:
         model.init_weights('models/pytorch/imagenet/hrnet_w32-32af842e.pth')
