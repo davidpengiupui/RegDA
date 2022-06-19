@@ -9,14 +9,14 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-import logging
+#import logging
 
 import torch
 import torch.nn as nn
 
 
 BN_MOMENTUM = 0.1
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
 
 
 def conv3x3(in_planes, out_planes, stride=1):
