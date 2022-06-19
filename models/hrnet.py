@@ -331,10 +331,16 @@ class PoseHighResolutionNet(nn.Module):
             #stride=1,
             #padding=1 if extra.FINAL_CONV_KERNEL == 3 else 0
         #)
+        self._out_features = pre_stage_channels[0]
 
         #self.pretrained_layers = cfg['MODEL']['EXTRA']['PRETRAINED_LAYERS']
         self.pretrained_layers = ['conv1', 'bn1', 'conv2', 'bn2', 'layer1', 'transition1', 'stage2', 'transition2', 'stage3', 'transition3', 'stage4']
 
+    @property
+    def out_features(self):
+        """The dimension of output features"""
+        return self._out_features
+    
     def _make_transition_layer(
             self, num_channels_pre_layer, num_channels_cur_layer):
         num_branches_cur = len(num_channels_cur_layer)
