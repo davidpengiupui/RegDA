@@ -324,15 +324,16 @@ class PoseHighResolutionNet(nn.Module):
         self.stage4, pre_stage_channels = self._make_stage(
             self.stage4_cfg, num_channels, multi_scale_output=False)
 
-        self.final_layer = nn.Conv2d(
-            in_channels=pre_stage_channels[0],
-            out_channels=cfg.MODEL.NUM_JOINTS,
-            kernel_size=extra.FINAL_CONV_KERNEL,
-            stride=1,
-            padding=1 if extra.FINAL_CONV_KERNEL == 3 else 0
-        )
+        #self.final_layer = nn.Conv2d(
+            #in_channels=pre_stage_channels[0],
+            #out_channels=cfg.MODEL.NUM_JOINTS,
+            #kernel_size=extra.FINAL_CONV_KERNEL,
+            #stride=1,
+            #padding=1 if extra.FINAL_CONV_KERNEL == 3 else 0
+        #)
 
-        self.pretrained_layers = cfg['MODEL']['EXTRA']['PRETRAINED_LAYERS']
+        #self.pretrained_layers = cfg['MODEL']['EXTRA']['PRETRAINED_LAYERS']
+        self.pretrained_layers = ['conv1', 'bn1', 'conv2', 'bn2', 'layer1', 'transition1', 'stage2', 'transition2', 'stage3', 'transition3', 'stage4']
 
     def _make_transition_layer(
             self, num_channels_pre_layer, num_channels_cur_layer):
@@ -459,12 +460,13 @@ class PoseHighResolutionNet(nn.Module):
                 x_list.append(y_list[i])
         y_list = self.stage4(x_list)
 
-        x = self.final_layer(y_list[0])
+        #x = self.final_layer(y_list[0])
 
-        return x
+        #return x
+        return y_list[0]
 
     def init_weights(self, pretrained=''):
-        logger.info('=> init weights from normal distribution')
+        #logger.info('=> init weights from normal distribution')
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 # nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
@@ -483,7 +485,7 @@ class PoseHighResolutionNet(nn.Module):
 
         if os.path.isfile(pretrained):
             pretrained_state_dict = torch.load(pretrained)
-            logger.info('=> loading pretrained model {}'.format(pretrained))
+            #logger.info('=> loading pretrained model {}'.format(pretrained))
 
             need_init_state_dict = {}
             for name, m in pretrained_state_dict.items():
@@ -492,14 +494,14 @@ class PoseHighResolutionNet(nn.Module):
                     need_init_state_dict[name] = m
             self.load_state_dict(need_init_state_dict, strict=False)
         elif pretrained:
-            logger.error('=> please download pre-trained models first!')
+            #logger.error('=> please download pre-trained models first!')
             raise ValueError('{} is not exist!'.format(pretrained))
 
 
-def get_pose_net(cfg, is_train, **kwargs):
+def get_pose_net(is_train=True, **kwargs):
     model = PoseHighResolutionNet(cfg, **kwargs)
 
-    if is_train and cfg.MODEL.INIT_WEIGHTS:
+    if is_train:
         model.init_weights(cfg.MODEL.PRETRAINED)
 
     return model
