@@ -21,7 +21,7 @@ from model import PoseResNet2d as RegDAPoseResNet, \
     PseudoLabelGenerator2d, RegressionDisparity # finish
 import models as models #finish
 from network import Upsampling, PoseResNet # finish
-from loss import JointsKLLoss # finish
+from loss import JointsKLLoss, weighted_neg_loss # finish
 import dataset as datasets # finish
 import transforms as T # finish
 from transforms import Denormalize # finish
@@ -327,14 +327,18 @@ def train(train_source_iter, train_target_iter, model, criterion,regression_disp
         # Step B train adv regressor to maximize regression disparity
         optimizer_h_adv.zero_grad()
         y_t, y_t_adv = model(x_t)
-        loss_ground_false = args.trade_off * regression_disparity(y_t, y_t_adv, weight_t, mode='max')
+        y_t_true, y_t_false = PseudoLabelGenerator2d()(y_t)
+        #loss_ground_false = args.trade_off * regression_disparity(y_t, y_t_adv, weight_t, mode='max')
+        loss_ground_false = args.trade_off * weighted_neg_loss(y_t_adv, y_t_false, weight_t) 
         loss_ground_false.backward()
         optimizer_h_adv.step()
 
         # Step C train feature extractor to minimize regression disparity
         optimizer_f.zero_grad()
         y_t, y_t_adv = model(x_t)
-        loss_ground_truth = args.trade_off * regression_disparity(y_t, y_t_adv, weight_t, mode='min')
+        y_t_true, y_t_false = PseudoLabelGenerator2d()(y_t)
+        #loss_ground_truth = args.trade_off * regression_disparity(y_t, y_t_adv, weight_t, mode='min')
+        loss_ground_truth = args.trade_off * weighted_neg_loss(y_t_adv, y_t_true, weight_t)
         loss_ground_truth.backward()
         optimizer_f.step()
 
